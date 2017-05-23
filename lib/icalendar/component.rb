@@ -71,7 +71,7 @@ module Icalendar
       # than 75 octets, but you need to split between characters, not bytes.
       # This is challanging with Unicode composing accents, for example.
 
-      chars = long_line.scan(/\P{M}\p{M}*/u) # split in graphenes
+      chars = long_line.force_encoding(Encoding::UTF_8).scan(/\P{M}\p{M}*/u) # split in graphenes
       folded = ['']
       bytes = 0
       while chars.count > 0
